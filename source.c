@@ -1,16 +1,11 @@
-//this is the input code for our parser
-
-#include<stdio.h>
-#include<stdlib.h>
-
 int main()
 {
 	int i=1;
 	do{
 		printf("%d\n",i);
 		i++;
-	}while(i<=10)
-	
+	}while(i<=10);
+
 	char c;
 	scanf("%c",&c);
 	switch(c)
