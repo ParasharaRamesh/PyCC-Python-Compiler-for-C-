@@ -8,8 +8,6 @@ import sys
 
 #So for each scope also we need a SymbolTable .ie each scope as in anything within {} so we can create a new Symbol table object and move on
 class SymbolTable:
-    def __init__(self):
-        self.st=dict()
 
     def insert(self,lexeme,token,attributes):#by definition save lexeme s and token t and return pointer
         self.st[lexeme]=[token]+attributes #We'll have varying lengths of attributes.
@@ -17,6 +15,11 @@ class SymbolTable:
         #     self.st[lexeme]=[token]+attributes #We'll have varying lengths of attributes.
         # else:
         #     raise Exception('Could not add the current lexeme to the symbol table!')
+
+    def __init__(self):
+        self.st=dict()
+        #reserved=("while")
+        #self.st.insert(rword for rword in reserved)
 
     def insertAttribute(self,lexeme,newAttrType,newAttrValue):#is this function necessary?
         if lexeme not in self.st:
