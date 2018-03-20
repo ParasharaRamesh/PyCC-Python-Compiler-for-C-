@@ -1,8 +1,14 @@
-from LexicalAnalyser import LexicalAnalyser
-lexer = LexicalAnalyser().build()
+from LexicalAnalyser import Lexer, LexicalAnalyser
+import pprint
+lexer = Lexer().build()
 
-with open("source.c") as f:
+with open("source.c") as f:  # auto close
     lexer.input(f.read())
 
-for token in lexer:
-    print(token.value, token.type, token.lineno, token.lexpos, sep='\t')
+# lexer is an iterable
+tokenList = list(lexer)
+symTable = LexicalAnalyser(tokenList).buildSymTable()
+
+pp = pprint.PrettyPrinter(indent=4)
+# pp.pprint(tokenList)
+print(symTable)

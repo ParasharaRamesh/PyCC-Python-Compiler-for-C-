@@ -55,4 +55,17 @@ class GlobalConstants:
                 "NEWLINE",
         )
 
-        reserved=()
+        reserved={
+           "if" : "IF",
+           "else" : "ELSE",
+           "else if" : "ELSEIF",
+           "while" : "WHILE",
+           "do"     :"DO",
+           "switch" : "SWITCH",
+           "case" : "CASE",
+           "int" : "INTEGER",
+           "float" : "FLOAT",
+           "char" : "CHARACTER",
+           "double" : "DOUBLE",
+           "return" : "RETURN",
+        }

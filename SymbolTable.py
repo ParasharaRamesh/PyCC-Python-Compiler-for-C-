@@ -8,44 +8,80 @@ import sys
 
 #So for each scope also we need a SymbolTable .ie each scope as in anything within {} so we can create a new Symbol table object and move on
 class SymbolTable:
-
-    def insert(self,lexeme,token,attributes):#by definition save lexeme s and token t and return pointer
-        self.st[lexeme]=[token]+attributes #We'll have varying lengths of attributes.
+    # by definition save lexeme s and token t and return pointer
+    def insert(self, lexeme, tokenType, *attr):
+        # We'll have varying lengths of attributes.
+        self.st[lexeme] = [tokenType] + list(attr)
         # if lexeme not in self.st:
         #     self.st[lexeme]=[token]+attributes #We'll have varying lengths of attributes.
         # else:
         #     raise Exception('Could not add the current lexeme to the symbol table!')
 
     def __init__(self):
-        self.st=dict()
+        self.parent = None
+        self.children = []
+        self.seq_num = None  # Lets just have it, but not use it, for now okay so now in main i think we have to check if we read the {
+        self.st = dict()
         #reserved=("while")
         #self.st.insert(rword for rword in reserved)
 
-    def insertAttribute(self,lexeme,newAttrType,newAttrValue):#is this function necessary?
+    def setSeqNum(self, seqNum):
+        self.seq_num = seqNum
+
+    def getSeqNum(self):
+        return self.seq_num
+
+    def getParent(self):
+        return self.parent
+
+    def setParent(self, st_parent):
+        if st_parent is None:
+            raise Exception("Parent is None")
+        self.parent = st_parent
+
+    def getChildren(self):
+        return self.children
+
+    def addChild(self, child):
+        if child is None:
+            raise Exception("Child is None")
+        self.children.append(child)
+        child.setParent(self)
+
+    # is this function necessary?
+    def insertAttribute(self, lexeme, newAttrType, newAttrValue):
         if lexeme not in self.st:
             """
                 attrTypes = {"TOKENTYPE": 0, "ADDR": 1, "DATATYPE": 2}
             """
             self.st[lexeme][attrTypes[newAttrType]] = newAttrValue
         else:
-            raise Exception('Could not add the new Attribute for the current lexeme!')
+            raise Exception(
+                'Could not add the new Attribute for the current lexeme!')
 
-    def lookup(self,lexeme):#by definition return index of entry for lexeme s or 0 if s is not found
+    def lookup(self, lexeme):  # by definition return index of entry for lexeme s or 0 if s is not found
         if lexeme in self.st.keys():
             return self.st[lexeme]
         else:
             raise Exception(' Current lexeme is not present in SymbolTable')
 
-    def delete(self,lexeme):#maybe remove a lexeme from the SymbolTable
+    def delete(self, lexeme):  # maybe remove a lexeme from the SymbolTable
         if lexeme in self.st.keys():
             del self.st[lexeme]
         else:
-            raise Exception('Current lexeme is not present in SymbolTable so cant be deleted!')
+            raise Exception(
+                'Current lexeme is not present in SymbolTable so cant be deleted!')
 
-    def flushSymbolTable(self):#maybe completely remove all the rows in the SymbolTable
+    def flushSymbolTable(self):  # maybe completely remove all the rows in the SymbolTable
         for k in self.st.keys():
             del self.st[lexeme]
         print("Sucessfully flushed the symbol table")
 
-    def expose(self):#okay maru test it now ! put the path of the c file correcctly and try it out!
+    def expose(self):  # okay maru test it now ! put the path of the c file correcctly and try it out!
         [print(key, self.st[key]) for key in self.st]
+
+    def __str__(self):
+        s = str(self.st)
+        for c in self.children:
+            s += '\n' + ('\t'*c.getSeqNum()) + str(c)
+        return str(s)
