@@ -1,0 +1,1335 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    DO
+    DOT
+    HASH
+    LITERALSTRING
+    LSQUARE
+    RSQUARE
+    THEN
+    UNARY
+
+Grammar
+
+Rule 0     S' -> PROGRAM
+Rule 1     PROGRAM -> INT MAIN LPAREN RPAREN LBRACE CODE RBRACE
+Rule 2     CODE -> STMT CODE
+Rule 3     CODE -> <empty>
+Rule 4     STMT -> S1
+Rule 5     STMT -> S2
+Rule 6     STMT -> S3
+Rule 7     STMT -> S4
+Rule 8     STMT -> S5
+Rule 9     STMT -> S6
+Rule 10    S5 -> BREAK SEMICOLON
+Rule 11    S6 -> RETURN SEMICOLON
+Rule 12    S1 -> TYPE_NAME_STORE SEMICOLON
+Rule 13    S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+Rule 14    MULTICASE -> CASESTMT MULTICASE
+Rule 15    MULTICASE -> <empty>
+Rule 16    CASESTMT -> CASE EXPR COLON CODE
+Rule 17    CASESTMT -> DEFAULT COLON CODE
+Rule 18    S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE
+Rule 19    S4 -> ID ASSIGNMENT EXPR SEMICOLON
+Rule 20    BASICIF -> IF LPAREN COND RPAREN LBRACE CODE RBRACE
+Rule 21    COMPLEXIF -> BASICIF ELSE LBRACE CODE RBRACE
+Rule 22    TYPE_NAME_STORE -> INT ID ASSIGNMENT EXPR
+Rule 23    TYPE_NAME_STORE -> FLOAT ID ASSIGNMENT EXPR
+Rule 24    COND -> EXPR OR EXPR
+Rule 25    COND -> EXPR AND EXPR
+Rule 26    COND -> EXPR COMPARATORS EXPR
+Rule 27    COND -> NUMBER
+Rule 28    COND -> ID
+Rule 29    COND -> TRUE
+Rule 30    COND -> FALSE
+Rule 31    EXPR -> EXPR PLUS EXPR
+Rule 32    EXPR -> EXPR MINUS EXPR
+Rule 33    EXPR -> EXPR TIMES EXPR
+Rule 34    EXPR -> EXPR DIVIDE EXPR
+Rule 35    EXPR -> NUMBER
+Rule 36    EXPR -> ID
+Rule 37    EXPR -> LPAREN EXPR RPAREN
+
+Terminals, with rules where they appear
+
+AND                  : 25
+ASSIGNMENT           : 19 22 23
+BREAK                : 10
+CASE                 : 16
+COLON                : 16 17
+COMPARATORS          : 26
+DEFAULT              : 17
+DIVIDE               : 34
+DO                   : 
+DOT                  : 
+ELSE                 : 21
+FALSE                : 30
+FLOAT                : 23
+HASH                 : 
+ID                   : 19 22 23 28 36
+IF                   : 20
+INT                  : 1 22
+LBRACE               : 1 13 18 20 21
+LITERALSTRING        : 
+LPAREN               : 1 13 18 20 37
+LSQUARE              : 
+MAIN                 : 1
+MINUS                : 32
+NUMBER               : 27 35
+OR                   : 24
+PLUS                 : 31
+RBRACE               : 1 13 18 20 21
+RETURN               : 11
+RPAREN               : 1 13 18 20 37
+RSQUARE              : 
+SEMICOLON            : 10 11 12 19
+SWITCH               : 13
+THEN                 : 
+TIMES                : 33
+TRUE                 : 29
+UNARY                : 
+WHILE                : 18
+error                : 
+
+Nonterminals, with rules where they appear
+
+BASICIF              : 21
+CASESTMT             : 14
+CODE                 : 1 2 16 17 18 20 21
+COMPLEXIF            : 
+COND                 : 18 20
+EXPR                 : 13 16 19 22 23 24 24 25 25 26 26 31 31 32 32 33 33 34 34 37
+MULTICASE            : 13 14
+PROGRAM              : 0
+S1                   : 4
+S2                   : 5
+S3                   : 6
+S4                   : 7
+S5                   : 8
+S6                   : 9
+STMT                 : 2
+TYPE_NAME_STORE      : 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . PROGRAM
+    (1) PROGRAM -> . INT MAIN LPAREN RPAREN LBRACE CODE RBRACE
+
+    INT             shift and go to state 2
+
+    PROGRAM                        shift and go to state 1
+
+state 1
+
+    (0) S' -> PROGRAM .
+
+
+
+state 2
+
+    (1) PROGRAM -> INT . MAIN LPAREN RPAREN LBRACE CODE RBRACE
+
+    MAIN            shift and go to state 3
+
+
+state 3
+
+    (1) PROGRAM -> INT MAIN . LPAREN RPAREN LBRACE CODE RBRACE
+
+    LPAREN          shift and go to state 4
+
+
+state 4
+
+    (1) PROGRAM -> INT MAIN LPAREN . RPAREN LBRACE CODE RBRACE
+
+    RPAREN          shift and go to state 5
+
+
+state 5
+
+    (1) PROGRAM -> INT MAIN LPAREN RPAREN . LBRACE CODE RBRACE
+
+    LBRACE          shift and go to state 6
+
+
+state 6
+
+    (1) PROGRAM -> INT MAIN LPAREN RPAREN LBRACE . CODE RBRACE
+    (2) CODE -> . STMT CODE
+    (3) CODE -> .
+    (4) STMT -> . S1
+    (5) STMT -> . S2
+    (6) STMT -> . S3
+    (7) STMT -> . S4
+    (8) STMT -> . S5
+    (9) STMT -> . S6
+    (12) S1 -> . TYPE_NAME_STORE SEMICOLON
+    (13) S2 -> . SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+    (18) S3 -> . WHILE LPAREN COND RPAREN LBRACE CODE RBRACE
+    (19) S4 -> . ID ASSIGNMENT EXPR SEMICOLON
+    (10) S5 -> . BREAK SEMICOLON
+    (11) S6 -> . RETURN SEMICOLON
+    (22) TYPE_NAME_STORE -> . INT ID ASSIGNMENT EXPR
+    (23) TYPE_NAME_STORE -> . FLOAT ID ASSIGNMENT EXPR
+
+    RBRACE          reduce using rule 3 (CODE -> .)
+    SWITCH          shift and go to state 17
+    WHILE           shift and go to state 18
+    ID              shift and go to state 19
+    BREAK           shift and go to state 20
+    RETURN          shift and go to state 21
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 22
+
+    CODE                           shift and go to state 8
+    STMT                           shift and go to state 9
+    S1                             shift and go to state 10
+    S2                             shift and go to state 11
+    S3                             shift and go to state 12
+    S4                             shift and go to state 13
+    S5                             shift and go to state 14
+    S6                             shift and go to state 15
+    TYPE_NAME_STORE                shift and go to state 16
+
+state 7
+
+    (22) TYPE_NAME_STORE -> INT . ID ASSIGNMENT EXPR
+
+    ID              shift and go to state 23
+
+
+state 8
+
+    (1) PROGRAM -> INT MAIN LPAREN RPAREN LBRACE CODE . RBRACE
+
+    RBRACE          shift and go to state 24
+
+
+state 9
+
+    (2) CODE -> STMT . CODE
+    (2) CODE -> . STMT CODE
+    (3) CODE -> .
+    (4) STMT -> . S1
+    (5) STMT -> . S2
+    (6) STMT -> . S3
+    (7) STMT -> . S4
+    (8) STMT -> . S5
+    (9) STMT -> . S6
+    (12) S1 -> . TYPE_NAME_STORE SEMICOLON
+    (13) S2 -> . SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+    (18) S3 -> . WHILE LPAREN COND RPAREN LBRACE CODE RBRACE
+    (19) S4 -> . ID ASSIGNMENT EXPR SEMICOLON
+    (10) S5 -> . BREAK SEMICOLON
+    (11) S6 -> . RETURN SEMICOLON
+    (22) TYPE_NAME_STORE -> . INT ID ASSIGNMENT EXPR
+    (23) TYPE_NAME_STORE -> . FLOAT ID ASSIGNMENT EXPR
+
+    RBRACE          reduce using rule 3 (CODE -> .)
+    CASE            reduce using rule 3 (CODE -> .)
+    DEFAULT         reduce using rule 3 (CODE -> .)
+    SWITCH          shift and go to state 17
+    WHILE           shift and go to state 18
+    ID              shift and go to state 19
+    BREAK           shift and go to state 20
+    RETURN          shift and go to state 21
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 22
+
+    STMT                           shift and go to state 9
+    CODE                           shift and go to state 25
+    S1                             shift and go to state 10
+    S2                             shift and go to state 11
+    S3                             shift and go to state 12
+    S4                             shift and go to state 13
+    S5                             shift and go to state 14
+    S6                             shift and go to state 15
+    TYPE_NAME_STORE                shift and go to state 16
+
+state 10
+
+    (4) STMT -> S1 .
+
+    SWITCH          reduce using rule 4 (STMT -> S1 .)
+    WHILE           reduce using rule 4 (STMT -> S1 .)
+    ID              reduce using rule 4 (STMT -> S1 .)
+    BREAK           reduce using rule 4 (STMT -> S1 .)
+    RETURN          reduce using rule 4 (STMT -> S1 .)
+    INT             reduce using rule 4 (STMT -> S1 .)
+    FLOAT           reduce using rule 4 (STMT -> S1 .)
+    RBRACE          reduce using rule 4 (STMT -> S1 .)
+    CASE            reduce using rule 4 (STMT -> S1 .)
+    DEFAULT         reduce using rule 4 (STMT -> S1 .)
+
+
+state 11
+
+    (5) STMT -> S2 .
+
+    SWITCH          reduce using rule 5 (STMT -> S2 .)
+    WHILE           reduce using rule 5 (STMT -> S2 .)
+    ID              reduce using rule 5 (STMT -> S2 .)
+    BREAK           reduce using rule 5 (STMT -> S2 .)
+    RETURN          reduce using rule 5 (STMT -> S2 .)
+    INT             reduce using rule 5 (STMT -> S2 .)
+    FLOAT           reduce using rule 5 (STMT -> S2 .)
+    RBRACE          reduce using rule 5 (STMT -> S2 .)
+    CASE            reduce using rule 5 (STMT -> S2 .)
+    DEFAULT         reduce using rule 5 (STMT -> S2 .)
+
+
+state 12
+
+    (6) STMT -> S3 .
+
+    SWITCH          reduce using rule 6 (STMT -> S3 .)
+    WHILE           reduce using rule 6 (STMT -> S3 .)
+    ID              reduce using rule 6 (STMT -> S3 .)
+    BREAK           reduce using rule 6 (STMT -> S3 .)
+    RETURN          reduce using rule 6 (STMT -> S3 .)
+    INT             reduce using rule 6 (STMT -> S3 .)
+    FLOAT           reduce using rule 6 (STMT -> S3 .)
+    RBRACE          reduce using rule 6 (STMT -> S3 .)
+    CASE            reduce using rule 6 (STMT -> S3 .)
+    DEFAULT         reduce using rule 6 (STMT -> S3 .)
+
+
+state 13
+
+    (7) STMT -> S4 .
+
+    SWITCH          reduce using rule 7 (STMT -> S4 .)
+    WHILE           reduce using rule 7 (STMT -> S4 .)
+    ID              reduce using rule 7 (STMT -> S4 .)
+    BREAK           reduce using rule 7 (STMT -> S4 .)
+    RETURN          reduce using rule 7 (STMT -> S4 .)
+    INT             reduce using rule 7 (STMT -> S4 .)
+    FLOAT           reduce using rule 7 (STMT -> S4 .)
+    RBRACE          reduce using rule 7 (STMT -> S4 .)
+    CASE            reduce using rule 7 (STMT -> S4 .)
+    DEFAULT         reduce using rule 7 (STMT -> S4 .)
+
+
+state 14
+
+    (8) STMT -> S5 .
+
+    SWITCH          reduce using rule 8 (STMT -> S5 .)
+    WHILE           reduce using rule 8 (STMT -> S5 .)
+    ID              reduce using rule 8 (STMT -> S5 .)
+    BREAK           reduce using rule 8 (STMT -> S5 .)
+    RETURN          reduce using rule 8 (STMT -> S5 .)
+    INT             reduce using rule 8 (STMT -> S5 .)
+    FLOAT           reduce using rule 8 (STMT -> S5 .)
+    RBRACE          reduce using rule 8 (STMT -> S5 .)
+    CASE            reduce using rule 8 (STMT -> S5 .)
+    DEFAULT         reduce using rule 8 (STMT -> S5 .)
+
+
+state 15
+
+    (9) STMT -> S6 .
+
+    SWITCH          reduce using rule 9 (STMT -> S6 .)
+    WHILE           reduce using rule 9 (STMT -> S6 .)
+    ID              reduce using rule 9 (STMT -> S6 .)
+    BREAK           reduce using rule 9 (STMT -> S6 .)
+    RETURN          reduce using rule 9 (STMT -> S6 .)
+    INT             reduce using rule 9 (STMT -> S6 .)
+    FLOAT           reduce using rule 9 (STMT -> S6 .)
+    RBRACE          reduce using rule 9 (STMT -> S6 .)
+    CASE            reduce using rule 9 (STMT -> S6 .)
+    DEFAULT         reduce using rule 9 (STMT -> S6 .)
+
+
+state 16
+
+    (12) S1 -> TYPE_NAME_STORE . SEMICOLON
+
+    SEMICOLON       shift and go to state 26
+
+
+state 17
+
+    (13) S2 -> SWITCH . LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+
+    LPAREN          shift and go to state 27
+
+
+state 18
+
+    (18) S3 -> WHILE . LPAREN COND RPAREN LBRACE CODE RBRACE
+
+    LPAREN          shift and go to state 28
+
+
+state 19
+
+    (19) S4 -> ID . ASSIGNMENT EXPR SEMICOLON
+
+    ASSIGNMENT      shift and go to state 29
+
+
+state 20
+
+    (10) S5 -> BREAK . SEMICOLON
+
+    SEMICOLON       shift and go to state 30
+
+
+state 21
+
+    (11) S6 -> RETURN . SEMICOLON
+
+    SEMICOLON       shift and go to state 31
+
+
+state 22
+
+    (23) TYPE_NAME_STORE -> FLOAT . ID ASSIGNMENT EXPR
+
+    ID              shift and go to state 32
+
+
+state 23
+
+    (22) TYPE_NAME_STORE -> INT ID . ASSIGNMENT EXPR
+
+    ASSIGNMENT      shift and go to state 33
+
+
+state 24
+
+    (1) PROGRAM -> INT MAIN LPAREN RPAREN LBRACE CODE RBRACE .
+
+    $end            reduce using rule 1 (PROGRAM -> INT MAIN LPAREN RPAREN LBRACE CODE RBRACE .)
+
+
+state 25
+
+    (2) CODE -> STMT CODE .
+
+    RBRACE          reduce using rule 2 (CODE -> STMT CODE .)
+    CASE            reduce using rule 2 (CODE -> STMT CODE .)
+    DEFAULT         reduce using rule 2 (CODE -> STMT CODE .)
+
+
+state 26
+
+    (12) S1 -> TYPE_NAME_STORE SEMICOLON .
+
+    SWITCH          reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    WHILE           reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    ID              reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    BREAK           reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    RETURN          reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    INT             reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    FLOAT           reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    RBRACE          reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    CASE            reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+    DEFAULT         reduce using rule 12 (S1 -> TYPE_NAME_STORE SEMICOLON .)
+
+
+state 27
+
+    (13) S2 -> SWITCH LPAREN . EXPR RPAREN LBRACE MULTICASE RBRACE
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 35
+
+state 28
+
+    (18) S3 -> WHILE LPAREN . COND RPAREN LBRACE CODE RBRACE
+    (24) COND -> . EXPR OR EXPR
+    (25) COND -> . EXPR AND EXPR
+    (26) COND -> . EXPR COMPARATORS EXPR
+    (27) COND -> . NUMBER
+    (28) COND -> . ID
+    (29) COND -> . TRUE
+    (30) COND -> . FALSE
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 40
+    ID              shift and go to state 41
+    TRUE            shift and go to state 42
+    FALSE           shift and go to state 43
+    LPAREN          shift and go to state 34
+
+    COND                           shift and go to state 38
+    EXPR                           shift and go to state 39
+
+state 29
+
+    (19) S4 -> ID ASSIGNMENT . EXPR SEMICOLON
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 44
+
+state 30
+
+    (10) S5 -> BREAK SEMICOLON .
+
+    SWITCH          reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    WHILE           reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    ID              reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    BREAK           reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    RETURN          reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    INT             reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    FLOAT           reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    RBRACE          reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    CASE            reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+    DEFAULT         reduce using rule 10 (S5 -> BREAK SEMICOLON .)
+
+
+state 31
+
+    (11) S6 -> RETURN SEMICOLON .
+
+    SWITCH          reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    WHILE           reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    ID              reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    BREAK           reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    RETURN          reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    INT             reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    FLOAT           reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    RBRACE          reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    CASE            reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+    DEFAULT         reduce using rule 11 (S6 -> RETURN SEMICOLON .)
+
+
+state 32
+
+    (23) TYPE_NAME_STORE -> FLOAT ID . ASSIGNMENT EXPR
+
+    ASSIGNMENT      shift and go to state 45
+
+
+state 33
+
+    (22) TYPE_NAME_STORE -> INT ID ASSIGNMENT . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 46
+
+state 34
+
+    (37) EXPR -> LPAREN . EXPR RPAREN
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 47
+
+state 35
+
+    (13) S2 -> SWITCH LPAREN EXPR . RPAREN LBRACE MULTICASE RBRACE
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          shift and go to state 48
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 36
+
+    (35) EXPR -> NUMBER .
+
+    RPAREN          reduce using rule 35 (EXPR -> NUMBER .)
+    PLUS            reduce using rule 35 (EXPR -> NUMBER .)
+    MINUS           reduce using rule 35 (EXPR -> NUMBER .)
+    TIMES           reduce using rule 35 (EXPR -> NUMBER .)
+    DIVIDE          reduce using rule 35 (EXPR -> NUMBER .)
+    SEMICOLON       reduce using rule 35 (EXPR -> NUMBER .)
+    OR              reduce using rule 35 (EXPR -> NUMBER .)
+    AND             reduce using rule 35 (EXPR -> NUMBER .)
+    COMPARATORS     reduce using rule 35 (EXPR -> NUMBER .)
+    COLON           reduce using rule 35 (EXPR -> NUMBER .)
+
+
+state 37
+
+    (36) EXPR -> ID .
+
+    RPAREN          reduce using rule 36 (EXPR -> ID .)
+    PLUS            reduce using rule 36 (EXPR -> ID .)
+    MINUS           reduce using rule 36 (EXPR -> ID .)
+    TIMES           reduce using rule 36 (EXPR -> ID .)
+    DIVIDE          reduce using rule 36 (EXPR -> ID .)
+    SEMICOLON       reduce using rule 36 (EXPR -> ID .)
+    OR              reduce using rule 36 (EXPR -> ID .)
+    AND             reduce using rule 36 (EXPR -> ID .)
+    COMPARATORS     reduce using rule 36 (EXPR -> ID .)
+    COLON           reduce using rule 36 (EXPR -> ID .)
+
+
+state 38
+
+    (18) S3 -> WHILE LPAREN COND . RPAREN LBRACE CODE RBRACE
+
+    RPAREN          shift and go to state 53
+
+
+state 39
+
+    (24) COND -> EXPR . OR EXPR
+    (25) COND -> EXPR . AND EXPR
+    (26) COND -> EXPR . COMPARATORS EXPR
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    OR              shift and go to state 54
+    AND             shift and go to state 55
+    COMPARATORS     shift and go to state 56
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 40
+
+    (27) COND -> NUMBER .
+    (35) EXPR -> NUMBER .
+
+    RPAREN          reduce using rule 27 (COND -> NUMBER .)
+    OR              reduce using rule 35 (EXPR -> NUMBER .)
+    AND             reduce using rule 35 (EXPR -> NUMBER .)
+    COMPARATORS     reduce using rule 35 (EXPR -> NUMBER .)
+    PLUS            reduce using rule 35 (EXPR -> NUMBER .)
+    MINUS           reduce using rule 35 (EXPR -> NUMBER .)
+    TIMES           reduce using rule 35 (EXPR -> NUMBER .)
+    DIVIDE          reduce using rule 35 (EXPR -> NUMBER .)
+
+
+state 41
+
+    (28) COND -> ID .
+    (36) EXPR -> ID .
+
+    RPAREN          reduce using rule 28 (COND -> ID .)
+    OR              reduce using rule 36 (EXPR -> ID .)
+    AND             reduce using rule 36 (EXPR -> ID .)
+    COMPARATORS     reduce using rule 36 (EXPR -> ID .)
+    PLUS            reduce using rule 36 (EXPR -> ID .)
+    MINUS           reduce using rule 36 (EXPR -> ID .)
+    TIMES           reduce using rule 36 (EXPR -> ID .)
+    DIVIDE          reduce using rule 36 (EXPR -> ID .)
+
+
+state 42
+
+    (29) COND -> TRUE .
+
+    RPAREN          reduce using rule 29 (COND -> TRUE .)
+
+
+state 43
+
+    (30) COND -> FALSE .
+
+    RPAREN          reduce using rule 30 (COND -> FALSE .)
+
+
+state 44
+
+    (19) S4 -> ID ASSIGNMENT EXPR . SEMICOLON
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    SEMICOLON       shift and go to state 57
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 45
+
+    (23) TYPE_NAME_STORE -> FLOAT ID ASSIGNMENT . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 58
+
+state 46
+
+    (22) TYPE_NAME_STORE -> INT ID ASSIGNMENT EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    SEMICOLON       reduce using rule 22 (TYPE_NAME_STORE -> INT ID ASSIGNMENT EXPR .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 47
+
+    (37) EXPR -> LPAREN EXPR . RPAREN
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          shift and go to state 59
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 48
+
+    (13) S2 -> SWITCH LPAREN EXPR RPAREN . LBRACE MULTICASE RBRACE
+
+    LBRACE          shift and go to state 60
+
+
+state 49
+
+    (31) EXPR -> EXPR PLUS . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 61
+
+state 50
+
+    (32) EXPR -> EXPR MINUS . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 62
+
+state 51
+
+    (33) EXPR -> EXPR TIMES . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 63
+
+state 52
+
+    (34) EXPR -> EXPR DIVIDE . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 64
+
+state 53
+
+    (18) S3 -> WHILE LPAREN COND RPAREN . LBRACE CODE RBRACE
+
+    LBRACE          shift and go to state 65
+
+
+state 54
+
+    (24) COND -> EXPR OR . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 66
+
+state 55
+
+    (25) COND -> EXPR AND . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 67
+
+state 56
+
+    (26) COND -> EXPR COMPARATORS . EXPR
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 68
+
+state 57
+
+    (19) S4 -> ID ASSIGNMENT EXPR SEMICOLON .
+
+    SWITCH          reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    WHILE           reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    ID              reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    BREAK           reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    RETURN          reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    INT             reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    FLOAT           reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    RBRACE          reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    CASE            reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+    DEFAULT         reduce using rule 19 (S4 -> ID ASSIGNMENT EXPR SEMICOLON .)
+
+
+state 58
+
+    (23) TYPE_NAME_STORE -> FLOAT ID ASSIGNMENT EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    SEMICOLON       reduce using rule 23 (TYPE_NAME_STORE -> FLOAT ID ASSIGNMENT EXPR .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 59
+
+    (37) EXPR -> LPAREN EXPR RPAREN .
+
+    RPAREN          reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    PLUS            reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    MINUS           reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    TIMES           reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    DIVIDE          reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    OR              reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    AND             reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    COMPARATORS     reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    SEMICOLON       reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+    COLON           reduce using rule 37 (EXPR -> LPAREN EXPR RPAREN .)
+
+
+state 60
+
+    (13) S2 -> SWITCH LPAREN EXPR RPAREN LBRACE . MULTICASE RBRACE
+    (14) MULTICASE -> . CASESTMT MULTICASE
+    (15) MULTICASE -> .
+    (16) CASESTMT -> . CASE EXPR COLON CODE
+    (17) CASESTMT -> . DEFAULT COLON CODE
+
+    RBRACE          reduce using rule 15 (MULTICASE -> .)
+    CASE            shift and go to state 71
+    DEFAULT         shift and go to state 72
+
+    MULTICASE                      shift and go to state 69
+    CASESTMT                       shift and go to state 70
+
+state 61
+
+    (31) EXPR -> EXPR PLUS EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    PLUS            reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    MINUS           reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    OR              reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    AND             reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    COMPARATORS     reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    SEMICOLON       reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    COLON           reduce using rule 31 (EXPR -> EXPR PLUS EXPR .)
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+  ! TIMES           [ reduce using rule 31 (EXPR -> EXPR PLUS EXPR .) ]
+  ! DIVIDE          [ reduce using rule 31 (EXPR -> EXPR PLUS EXPR .) ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+
+
+state 62
+
+    (32) EXPR -> EXPR MINUS EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    PLUS            reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    MINUS           reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    OR              reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    AND             reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    COMPARATORS     reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    SEMICOLON       reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    COLON           reduce using rule 32 (EXPR -> EXPR MINUS EXPR .)
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+  ! TIMES           [ reduce using rule 32 (EXPR -> EXPR MINUS EXPR .) ]
+  ! DIVIDE          [ reduce using rule 32 (EXPR -> EXPR MINUS EXPR .) ]
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+
+
+state 63
+
+    (33) EXPR -> EXPR TIMES EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    PLUS            reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    MINUS           reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    TIMES           reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    DIVIDE          reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    OR              reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    AND             reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    COMPARATORS     reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    SEMICOLON       reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+    COLON           reduce using rule 33 (EXPR -> EXPR TIMES EXPR .)
+
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+  ! TIMES           [ shift and go to state 51 ]
+  ! DIVIDE          [ shift and go to state 52 ]
+
+
+state 64
+
+    (34) EXPR -> EXPR DIVIDE EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    PLUS            reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    MINUS           reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    TIMES           reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    DIVIDE          reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    OR              reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    AND             reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    COMPARATORS     reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    SEMICOLON       reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+    COLON           reduce using rule 34 (EXPR -> EXPR DIVIDE EXPR .)
+
+  ! PLUS            [ shift and go to state 49 ]
+  ! MINUS           [ shift and go to state 50 ]
+  ! TIMES           [ shift and go to state 51 ]
+  ! DIVIDE          [ shift and go to state 52 ]
+
+
+state 65
+
+    (18) S3 -> WHILE LPAREN COND RPAREN LBRACE . CODE RBRACE
+    (2) CODE -> . STMT CODE
+    (3) CODE -> .
+    (4) STMT -> . S1
+    (5) STMT -> . S2
+    (6) STMT -> . S3
+    (7) STMT -> . S4
+    (8) STMT -> . S5
+    (9) STMT -> . S6
+    (12) S1 -> . TYPE_NAME_STORE SEMICOLON
+    (13) S2 -> . SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+    (18) S3 -> . WHILE LPAREN COND RPAREN LBRACE CODE RBRACE
+    (19) S4 -> . ID ASSIGNMENT EXPR SEMICOLON
+    (10) S5 -> . BREAK SEMICOLON
+    (11) S6 -> . RETURN SEMICOLON
+    (22) TYPE_NAME_STORE -> . INT ID ASSIGNMENT EXPR
+    (23) TYPE_NAME_STORE -> . FLOAT ID ASSIGNMENT EXPR
+
+    RBRACE          reduce using rule 3 (CODE -> .)
+    SWITCH          shift and go to state 17
+    WHILE           shift and go to state 18
+    ID              shift and go to state 19
+    BREAK           shift and go to state 20
+    RETURN          shift and go to state 21
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 22
+
+    CODE                           shift and go to state 73
+    STMT                           shift and go to state 9
+    S1                             shift and go to state 10
+    S2                             shift and go to state 11
+    S3                             shift and go to state 12
+    S4                             shift and go to state 13
+    S5                             shift and go to state 14
+    S6                             shift and go to state 15
+    TYPE_NAME_STORE                shift and go to state 16
+
+state 66
+
+    (24) COND -> EXPR OR EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 24 (COND -> EXPR OR EXPR .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 67
+
+    (25) COND -> EXPR AND EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 25 (COND -> EXPR AND EXPR .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 68
+
+    (26) COND -> EXPR COMPARATORS EXPR .
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    RPAREN          reduce using rule 26 (COND -> EXPR COMPARATORS EXPR .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 69
+
+    (13) S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE . RBRACE
+
+    RBRACE          shift and go to state 74
+
+
+state 70
+
+    (14) MULTICASE -> CASESTMT . MULTICASE
+    (14) MULTICASE -> . CASESTMT MULTICASE
+    (15) MULTICASE -> .
+    (16) CASESTMT -> . CASE EXPR COLON CODE
+    (17) CASESTMT -> . DEFAULT COLON CODE
+
+    RBRACE          reduce using rule 15 (MULTICASE -> .)
+    CASE            shift and go to state 71
+    DEFAULT         shift and go to state 72
+
+    CASESTMT                       shift and go to state 70
+    MULTICASE                      shift and go to state 75
+
+state 71
+
+    (16) CASESTMT -> CASE . EXPR COLON CODE
+    (31) EXPR -> . EXPR PLUS EXPR
+    (32) EXPR -> . EXPR MINUS EXPR
+    (33) EXPR -> . EXPR TIMES EXPR
+    (34) EXPR -> . EXPR DIVIDE EXPR
+    (35) EXPR -> . NUMBER
+    (36) EXPR -> . ID
+    (37) EXPR -> . LPAREN EXPR RPAREN
+
+    NUMBER          shift and go to state 36
+    ID              shift and go to state 37
+    LPAREN          shift and go to state 34
+
+    EXPR                           shift and go to state 76
+
+state 72
+
+    (17) CASESTMT -> DEFAULT . COLON CODE
+
+    COLON           shift and go to state 77
+
+
+state 73
+
+    (18) S3 -> WHILE LPAREN COND RPAREN LBRACE CODE . RBRACE
+
+    RBRACE          shift and go to state 78
+
+
+state 74
+
+    (13) S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .
+
+    SWITCH          reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    WHILE           reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    ID              reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    BREAK           reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    RETURN          reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    INT             reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    FLOAT           reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    RBRACE          reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    CASE            reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+    DEFAULT         reduce using rule 13 (S2 -> SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE .)
+
+
+state 75
+
+    (14) MULTICASE -> CASESTMT MULTICASE .
+
+    RBRACE          reduce using rule 14 (MULTICASE -> CASESTMT MULTICASE .)
+
+
+state 76
+
+    (16) CASESTMT -> CASE EXPR . COLON CODE
+    (31) EXPR -> EXPR . PLUS EXPR
+    (32) EXPR -> EXPR . MINUS EXPR
+    (33) EXPR -> EXPR . TIMES EXPR
+    (34) EXPR -> EXPR . DIVIDE EXPR
+
+    COLON           shift and go to state 79
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDE          shift and go to state 52
+
+
+state 77
+
+    (17) CASESTMT -> DEFAULT COLON . CODE
+    (2) CODE -> . STMT CODE
+    (3) CODE -> .
+    (4) STMT -> . S1
+    (5) STMT -> . S2
+    (6) STMT -> . S3
+    (7) STMT -> . S4
+    (8) STMT -> . S5
+    (9) STMT -> . S6
+    (12) S1 -> . TYPE_NAME_STORE SEMICOLON
+    (13) S2 -> . SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+    (18) S3 -> . WHILE LPAREN COND RPAREN LBRACE CODE RBRACE
+    (19) S4 -> . ID ASSIGNMENT EXPR SEMICOLON
+    (10) S5 -> . BREAK SEMICOLON
+    (11) S6 -> . RETURN SEMICOLON
+    (22) TYPE_NAME_STORE -> . INT ID ASSIGNMENT EXPR
+    (23) TYPE_NAME_STORE -> . FLOAT ID ASSIGNMENT EXPR
+
+    CASE            reduce using rule 3 (CODE -> .)
+    DEFAULT         reduce using rule 3 (CODE -> .)
+    RBRACE          reduce using rule 3 (CODE -> .)
+    SWITCH          shift and go to state 17
+    WHILE           shift and go to state 18
+    ID              shift and go to state 19
+    BREAK           shift and go to state 20
+    RETURN          shift and go to state 21
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 22
+
+    CODE                           shift and go to state 80
+    STMT                           shift and go to state 9
+    S1                             shift and go to state 10
+    S2                             shift and go to state 11
+    S3                             shift and go to state 12
+    S4                             shift and go to state 13
+    S5                             shift and go to state 14
+    S6                             shift and go to state 15
+    TYPE_NAME_STORE                shift and go to state 16
+
+state 78
+
+    (18) S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .
+
+    SWITCH          reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    WHILE           reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    ID              reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    BREAK           reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    RETURN          reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    INT             reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    FLOAT           reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    RBRACE          reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    CASE            reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+    DEFAULT         reduce using rule 18 (S3 -> WHILE LPAREN COND RPAREN LBRACE CODE RBRACE .)
+
+
+state 79
+
+    (16) CASESTMT -> CASE EXPR COLON . CODE
+    (2) CODE -> . STMT CODE
+    (3) CODE -> .
+    (4) STMT -> . S1
+    (5) STMT -> . S2
+    (6) STMT -> . S3
+    (7) STMT -> . S4
+    (8) STMT -> . S5
+    (9) STMT -> . S6
+    (12) S1 -> . TYPE_NAME_STORE SEMICOLON
+    (13) S2 -> . SWITCH LPAREN EXPR RPAREN LBRACE MULTICASE RBRACE
+    (18) S3 -> . WHILE LPAREN COND RPAREN LBRACE CODE RBRACE
+    (19) S4 -> . ID ASSIGNMENT EXPR SEMICOLON
+    (10) S5 -> . BREAK SEMICOLON
+    (11) S6 -> . RETURN SEMICOLON
+    (22) TYPE_NAME_STORE -> . INT ID ASSIGNMENT EXPR
+    (23) TYPE_NAME_STORE -> . FLOAT ID ASSIGNMENT EXPR
+
+    CASE            reduce using rule 3 (CODE -> .)
+    DEFAULT         reduce using rule 3 (CODE -> .)
+    RBRACE          reduce using rule 3 (CODE -> .)
+    SWITCH          shift and go to state 17
+    WHILE           shift and go to state 18
+    ID              shift and go to state 19
+    BREAK           shift and go to state 20
+    RETURN          shift and go to state 21
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 22
+
+    CODE                           shift and go to state 81
+    STMT                           shift and go to state 9
+    S1                             shift and go to state 10
+    S2                             shift and go to state 11
+    S3                             shift and go to state 12
+    S4                             shift and go to state 13
+    S5                             shift and go to state 14
+    S6                             shift and go to state 15
+    TYPE_NAME_STORE                shift and go to state 16
+
+state 80
+
+    (17) CASESTMT -> DEFAULT COLON CODE .
+
+    CASE            reduce using rule 17 (CASESTMT -> DEFAULT COLON CODE .)
+    DEFAULT         reduce using rule 17 (CASESTMT -> DEFAULT COLON CODE .)
+    RBRACE          reduce using rule 17 (CASESTMT -> DEFAULT COLON CODE .)
+
+
+state 81
+
+    (16) CASESTMT -> CASE EXPR COLON CODE .
+
+    CASE            reduce using rule 16 (CASESTMT -> CASE EXPR COLON CODE .)
+    DEFAULT         reduce using rule 16 (CASESTMT -> CASE EXPR COLON CODE .)
+    RBRACE          reduce using rule 16 (CASESTMT -> CASE EXPR COLON CODE .)
+

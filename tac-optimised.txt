@@ -1,0 +1,11 @@
+0 y=2
+1 L1 : t2=y+1
+2 y=t2
+3 L2 : if(y<4) goto L1
+4 goto L6
+5 L6 : if(y<3) goto L4
+6 goto L5
+7 L4 : t4=y-1
+8 y=t4
+9 goto EXIT
+10 L5 : y=743
